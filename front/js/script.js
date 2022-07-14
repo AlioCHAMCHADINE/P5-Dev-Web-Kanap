@@ -1,5 +1,6 @@
 // Récupération de l'api:
 
+
 fetch("http://localhost:3000/api/products")
 
   // le résultat en json:
