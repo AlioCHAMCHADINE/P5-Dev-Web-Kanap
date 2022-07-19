@@ -11,8 +11,7 @@
 const main =document.querySelector("main");
 
 
-
-fetch(`http://localhost:3000/api/products/${id}`)
+      fetch (`http://localhost:3000/api/products/${id}`)
   .then((res) => res.json())
   .then((couch) => {
     console.table(couch)
