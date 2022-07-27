@@ -89,9 +89,9 @@ const main =document.querySelector("main");
         
 let choixProduits = {
   name: trouverProduits.name,
-  _id: trouverProduits.idProduit,
+  id: couch._id,
   quantity: quantiteProduit,
-  colors: colors.value,
+  colors: couch.colors[baliseCouleur.value],
   image: trouverProduits.imageUrl,
   altImage: trouverProduits.altTxt,
   price: prixProduit,
