@@ -3,26 +3,29 @@
       let params = window.location.href;
       let url = new URL(params);
       let id = url.searchParams.get("_id");
-      
+      console.log(id);
 
-      // const params = new URLSearchParams(document.location.search); 
-      // const id = params.get("_id");
-      
+     
 const main =document.querySelector("main");
-
 
       fetch (`http://localhost:3000/api/products/${id}`)
   .then((res) => res.json())
   .then((couch) => {
     console.table(couch)
-    const template = document.querySelector("#article-product");
+    // const template = document.querySelector("#article-product");
 
     let chercherProduits = () => {
       return couch
   }
   let trouverProduits = chercherProduits()
-    console.table(couch.colors);
-    // couch.colors tableau contenant les couleurs de canapé
+
+
+        
+
+
+ 
+  const template = document.querySelector("#article-product");
+    
 
           const clone = document.importNode(template.content,true);
           const baliseTitre = clone.querySelector("#title");
