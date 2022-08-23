@@ -1,62 +1,45 @@
-// Affichage des produits dans le panier:
 
-// Récupéreration des produits du localStorage
-
-
-let params = window.location.href;
-let url = new URL(params);
-let id = url.searchParams.get("_id");
-console.log(id);
 
 
 //On récupére les infos stockées dans le localStorage
 let product = JSON.parse(localStorage.getItem("produit"));
 console.table(product)
 
-// Fonction ajouter un produit dans le local Storage
-const ajoutProduitLocalStorage = () => {
-
-// Ajout dans le tableau de l'objet avec les valeurs choisi par l'utilisateur
-product.push(productOptionChoices);
-
-//La transformation en format JSON et l'envoyer dans la key "produit" du localStorage
-localStorage.setItem ("produit", JSON.stringify(product));
-}
 
 //Création du tableau de commande pour le POST pour récupérer l'id de chaque produit de la commande
 let products = [] 
-console.log(products)
 //Sélection dans le DOM du conteneur des articles ajoutés
 let cartContainer = document.getElementById("cart__items")
 
-for (let n in product) {
-let productInStorage = [product[n]._id]
-products.push(productInStorage)
+
+
+// function recupererPrix(idProduit){
+  async function getProductById(idProduit) {
+
+    return (
+     fetch (`http://localhost:3000/api/products/${idProduit}`)
+           .then((res) => res.json())
+           .then((couch) => {
+               console.log(couch.price);
+               return couch.price
+           })
+           .catch((couch) => {
+               return error;
+                
+           })
+   );
+   
 }
 
 
-function recupererPrix(idProduit){
+
+
+
 //Requête API pour le JSON des produits à afficher les infos de chaque produits ajoutés
-fetch (`http://localhost:3000/api/products/${idProduit}`)
-  .then((res) => res.json())
-  .then((couch) => {
-    console.log(couch)
-    return couch.price
-    // let retournerProduit=()=>{
-    //   couch.price
-    // }
-    // return couch 
-  })}
-// fetch('http://localhost:3000/api/products/')
-//     .then((res) => res.json())
-//     .then ((couch) => {
-//         let chercherProduits = () => {
-//             return couch
-//         }
 
-//Déclaration de la variable qui contient le résultat de la fonction requête
+  
+// //Déclaration de la variable qui contient le résultat de la fonction requête
 
-// let trouverProduits = chercherProduits()
 
 // Si le panier est vide : Afficher le panier est vide
 
@@ -74,7 +57,7 @@ const panierVide = `<div class= "container-panier-vide">
 cartContainer.innerHTML = panierVide;
 
 } 
-//Si le panier n'est pas vide, il faut afficher les produits qui sont DANS le localStorage
+// //Si le panier n'est pas vide, il faut afficher les produits qui sont DANS le localStorage
 else {
 console.log("le panier possède des articles")
 let structureProduitPanier = [];
@@ -86,9 +69,11 @@ for (k = 0; k < product.length; k++) {
     //Calcul du prix , quantité * nombre de produit
     let quantityProduct = parseInt(product[k].quantity);
     let idProduit = product[k].id;
-    let prix = recupererPrix(idProduit)
+  let prix = getProductById(idProduit)
 console.log(prix)
-    //On utilise la variable pour incrémenter autant de bloc html que de produit
+
+
+//     //On utilise la variable pour incrémenter autant de bloc html que de produit
     structureProduitPanier = structureProduitPanier + `
     <article class="cart__item" data-id="${product[k].id}" data-color="${product[k].colors}">
             <div class="cart__item__img">
@@ -141,19 +126,19 @@ btn_supprimer[d].addEventListener("click", (event) =>{
   console.log(id_productToDelete);
   
 
-  //Avec la méthode filter je sélectionne les éléments à garder et je supprime l'élément où le btn suppr a été cliqué
+//   //Avec la méthode filter je sélectionne les éléments à garder et je supprime l'élément où le btn suppr a été cliqué
   product = product.filter( element=> element._id !== id_productToDelete || element.colors !== color_productToDelete);
   
-  //on envoie la variable dans le localStorage
-  //La transformation en format JSON et l'envoyer dans la key "produit" du localStorage
+//   //on envoie la variable dans le localStorage
+//   //La transformation en format JSON et l'envoyer dans la key "produit" du localStorage
   localStorage.setItem ("produit", JSON.stringify(product));
  
-  // Alerte pour avertir que le produit a été supprimé et rechargement de la page
+//   // Alerte pour avertir que le produit a été supprimé et rechargement de la page
   alert ("l'article a bien été supprimé")
   window.location.href= "cart.html"
   
   
-})}//Fin addEvent click Bouton supprimer
+})//Fin addEvent click Bouton supprimer
   
 //Affichage quantité total et prix total
 
@@ -182,11 +167,13 @@ let total = () => {
   totalQuantite.innerHTML = sommeQuantite
   
 }
+
 total();
 //Gestion des boutons pour modifier la quantités
 
 
 //Sélection des champs de valeurs
+
 let modifyQuantityButton = document.querySelectorAll(".itemQuantity"); 
 console.log(modifyQuantityButton);
 
@@ -194,7 +181,8 @@ addEventListener("change", ()=> {
 
 changeQuantity();
 total()
-})
+}) 
+
   
 function changeQuantity() {
 
@@ -212,13 +200,14 @@ for (let c in product) {
     }
     else {
       product[c].quantity = parseInt(modifyQuantityButton[c].value);
-      product[c].price = product[c].quantity * trouverProduits[c].price;
+      product[c].price = product[c].quantity * product[c].price;
       
     }
     
     localStorage.setItem ("produit", JSON.stringify(product));}
   }//fin modifyQuantity  */
-//fin fetch
+
+}//fin fetch
 
 
 
@@ -431,5 +420,4 @@ event.stopPropagation();
    
    //Nous redirige vers la page confirmation une fois la commande validé
    
-
   }) 

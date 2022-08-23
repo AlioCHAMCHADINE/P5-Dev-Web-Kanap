@@ -12,15 +12,11 @@ const main =document.querySelector("main");
   .then((res) => res.json())
   .then((couch) => {
     console.table(couch)
-    // const template = document.querySelector("#article-product");
 
     let chercherProduits = () => {
       return couch
   }
   let trouverProduits = chercherProduits()
-
-
-        
 
 
  
@@ -50,11 +46,6 @@ const main =document.querySelector("main");
           
           let quantite = document.getElementById("quantity")
         
-          
-          
-
-
-
           // addEvent listener pour Ajouter au panier
               
           let Panier = document.getElementById("addToCart");
