@@ -1,6 +1,4 @@
 
-
-
 fetch("http://localhost:3000/api/products")
 
 // le résultat en json:
@@ -12,7 +10,7 @@ fetch("http://localhost:3000/api/products")
 
   // la fonction affichage des produits
   lesKanaps(couch);
-})
+}) 
 // s'il ya d'erreur remplace le titre h1 par erreur 404
 .catch((err) => {
   document.querySelector(".titles").innerHTML = "<h1>erreur 404</h1>";
