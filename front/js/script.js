@@ -9,7 +9,7 @@ fetch("http://localhost:3000/api/products")
   console.table(couch);
 
   // la fonction affichage des produits
-  lesKanaps(couch);
+  lesKanaps(couch);  
 }) 
 // s'il ya d'erreur remplace le titre h1 par erreur 404
 .catch((err) => {

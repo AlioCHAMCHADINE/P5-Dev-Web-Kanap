@@ -1,119 +1,121 @@
-// let product = JSON.parse(localStorage.getItem("produit"));
-// console.table(product)
+let product = JSON.parse(localStorage.getItem("produit"));
+console.table(product)
 // let structureProduitPanier = [];
-// let totalQuantite = document.getElementById("totalQuantity");
-//       let totalPrix = document.getElementById("totalPrice");
-//       let cartContainer = document.getElementById("cart__items");
+let totalQuantite = document.getElementById("totalQuantity");
+      let totalPrix = document.getElementById("totalPrice");
+      let cartContainer = document.getElementById("cart__items");
 
 
-//                      function getProductById(idProduit){
+                     function getProductById(idProduit){
                       
                     
-//                           //Requête API pour le JSON des produits à afficher les infos de chaque produits ajoutés
-//                            fetch (`http://localhost:3000/api/products/${idProduit}`)
-//                             .then((res) => res.json())
-//                             .then((couch) =>{
+                          //Requête API pour le JSON des produits à afficher les infos de chaque produits ajoutés
+                           fetch (`http://localhost:3000/api/products/${idProduit}`)
+                            .then((res) => res.json())
+                            .then((couch) =>{
     
-//                                         // affichagePanier.innerHTML +=couch.price+
-//                                         let priceElt= document.createElement("p")
-//                                         let priceContent= document.createTextNode(couch.price)
-//                                         priceElt.appendChild(priceContent)
-//                                         let cartItem=document.getElementById("cart__items")
-//                                         cartItem.appendChild(priceElt)
+                                        // affichagePanier.innerHTML +=couch.price+
+                                        let priceElt= document.createElement("p")
+                                        let priceContent= document.createTextNode(couch.price)
+                                        priceElt.appendChild(priceContent)
+                                        // let cartItem=document.getElementById("cart__items")
+                                        cartContainer.appendChild(priceElt)
+                                        // cartItem.appendChild(priceElt)
+                                       
                                           
-//                                           // return couch.price 
+                                          // return couch.price 
                                                                     
                                               
-//                      })};
-                     
+                     })};
+                    
+                    
                       
-// // //Déclaration de la variable qui contient le résultat de la fonction requête
+// //Déclaration de la variable qui contient le résultat de la fonction requête
 // let affichagePrix=document.getElementById("cart__items")
 // for(i=0; i<product.length; i++){
-// let test = getProductById(product[i].id)}
+// let prix = getProductById(product[i].id)}
 
 
-//                     function afficherPanier(){ 
-                      
-                    
-//                       if(product === null || product == 0 ) {
-//                         console.log("le panier est vide");
-//                         const panierVide = `<div class= "container-panier-vide">
-//                                                 <h2> Le panier est vide </h2>
-//                                             </div)
-//                                             `;
-//                           let totalQuantite = document.getElementById("totalQuantity");
-//                           let totalPrix = document.getElementById("totalPrice")
-//                           totalQuantite.innerHTML= 0;
-//                           totalPrix.innerHTML=  0
+                    // function afficherPanier(){ 
+                      if(product === null || product == 0 ) {
+                        console.log("le panier est vide");
+                        const panierVide = `<div class= "container-panier-vide">
+                                                <h2> Le panier est vide </h2>
+                                            </div)
+                                            `;
+                          let totalQuantite = document.getElementById("totalQuantity");
+                          let totalPrix = document.getElementById("totalPrice")
+                          totalQuantite.innerHTML= 0;
+                          totalPrix.innerHTML=  0
                         
-//                         cartContainer.innerHTML = panierVide;
+                        cartContainer.innerHTML = panierVide;
                         
-//                         } 
-//                         // //Si le panier n'est pas vide, il faut afficher les produits qui sont DANS le localStorage
-//                         else {
-//                         console.log("le panier possède des articles")
-//                         let structureProduitPanier = [];
-//                         console.log(structureProduitPanier);
-                        
-//                         for (k = 0; k < product.length; k++) {
-//                             console.log("Nombre d'article " +  product.length);
-//                           }
-//                           };
-//                           afficherPanier();
-
-//                         }
-//                           calculPrix();
-                        
-//                         function calculPrix(){
-                          
-//     //Calcul du prix , quantité * nombre de produit
-//     let quantityProduct = parseInt(product[k].quantity);
-//     let idProduit = product[k].id;
-//   let prix = getProductById(idProduit)
-// console.log(prix)
-                       
-                        
-//                         //     //On utilise la variable pour incrémenter autant de bloc html que de produit
-//                             structureProduitPanier = structureProduitPanier + `
-//                             <article class="cart__item" data-id="${product[k].id}" data-color="${product[k].colors}">
-//                                     <div class="cart__item__img">
-//                                       <img src="${product[k].image}" alt="${product[k].altImage}">
-//                                     </div>
-//                                     <div class="cart__item__content">
-//                                       <div class="cart__item__content__description">
-//                                         <h2>${product[k].name}</h2>
-//                                         <p>${product[k].colors}</p>
-//                                         <p id="price">${prix + " €"}</p>
-//                                       </div>
-
-//                                       <div class="cart__item__content__settings">
-//                                         <div class="cart__item__content__settings__quantity">
-//                                           <p>Qté : </p>
-//                                           <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${quantityProduct}">
-//                                         </div>
-//                                         <div class="cart__item__content__settings__delete">
-//                                           <p class="deleteItem">Supprimer</p>
-//                                         </div>
-//                                       </div>
-//                                     </div>
-//                             </article>
-//                             `;
+                        } 
+                        // //Si le panier n'est pas vide, il faut afficher les produits qui sont DANS le localStorage
+                        else {
+                        console.log("le panier possède des articles")
+                        let structureProduitPanier = [];
+                        console.log(structureProduitPanier);
+                        cartContainer=document.getElementById("cart__items")
+                        for (k = 0; k < product.length; k++) {
+                          let prix = getProductById(product[k].id)
+                         
+                          console.log(prix)
+                            console.log("Nombre d'article " +  product.length);
                             
-                          
-//                         } 
-//                             if(k == product.length){
+                            //Calcul du prix , quantité * nombre de produit
+                           
+                           
                             
-//                                 //injection html dans la page panier
-//                             cartContainer.innerHTML= structureProduitPanier;
-//                         }
+
+                            let quantityProduct = parseInt(product[k].quantity);
+                            // let idProduit = product[k].id;
+                          // let prix = getProductById(idProduit)
+                        // console.log(prix)
+
                         
                         
-//                         } ;
+                        //     //On utilise la variable pour incrémenter autant de bloc html que de produit
+                            structureProduitPanier = structureProduitPanier + `
+                            <article class="cart__item" data-id="${product[k].id}" data-color="${product[k].colors}">
+                                    <div class="cart__item__img">
+                                      <img src="${product[k].image}" alt="${product[k].altImage}">
+                                    </div>
+                                    <div class="cart__item__content">
+                                      <div class="cart__item__content__description">
+                                        <h2>${product[k].name}</h2>
+                                        <p>${product[k].colors}</p>
+                                        <p id="price">${prix + " €"}</p>
+                                      </div>
+                                      <div class="cart__item__content__settings">
+                                        <div class="cart__item__content__settings__quantity">
+                                          <p>Qté : </p>
+                                          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${quantityProduct}">
+                                        </div>
+                                        <div class="cart__item__content__settings__delete">
+                                          <p class="deleteItem">Supprimer</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                            </article>
+                            `;
+                            
+                            
+                        } 
+                            if(k == product.length){
+                            
+                                //injection html dans la page panier
+                            cartContainer.innerHTML= structureProduitPanier;
+                        }
                         
                         
-//                         suppression();                     
-//  // fin else
+                        
+                        }
+                     
+                         // fin else 
+                        
+                        
+
  
  
 //   function suppression(){
@@ -230,4 +232,4 @@
 
 
 
-//fin fetch
+// //fin fetch
